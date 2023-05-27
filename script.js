@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid= document.querySelector('.grid')
     const scoreDisplay= document.querySelector('.score-display')
     const linesDisplay= document.querySelector('.line-display')
-    const displaySquares = document.querySelector('.previous-grid div')
+    const displaySquares = document.querySelectorAll('.previous-grid div')
     let squares = Array.from(grid.querySelectorAll('div'))
     const width = 10;
     const height = 20;
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
     }
 
-     //show up-next tetromino in mini-grid display
+     //show previous tetromino in displaySqaures 1h36
     const displayWidth = 4
     const displayIndex = 0
     let nextRandom = 0
