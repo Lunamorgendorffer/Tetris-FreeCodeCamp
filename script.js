@@ -1,12 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const startBtn = document.querySelector('button')
     const grid= document.querySelector('.grid')
+    const scoreDisplay= document.querySelector('.score-display')
+    const linesDisplay= document.querySelector('.line-display')
     const displaySquares = document.querySelector('.previous-grid div')
     let squares = Array.from(grid.querySelectorAll('div'))
     const width = 10;
     const height = 20;
     let currentPosition = 4;
     let timerId
+    let score = 0;
+    let lines = 0;
+
     
     //assign functions to keyCodes
     function control(e) {
@@ -156,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentPosition = 4
             draw()
             displayShape()
+            gameOver()
         }
     }
 
@@ -166,10 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else{
             draw ()
             timerId = setInterval(moveDown, 1000)
-            nextRandom = Math.floor(Math.random()*theTetrominoes.lenght)
+            nextRandom = Math.floor(Math.random()*theTetrominoes.length)
             displayShape()
         }
     })
+
+    //game over
+    function gameOver() {
+        if(current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
+            scoreDisplay.innerHTML = 'end'
+            clearInterval(timerId)
+        }
+    }
 
 
 })
