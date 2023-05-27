@@ -50,6 +50,39 @@ let random = Math.floor(Math.random()*theTetrominoes.length);
 let currentRotation= 0;
 let current = theTetrominoes[random][currentRotation]
 
-// move the tetromino down 
-let currentPosition = 4;
+//draw the shape
+function draw(){
+    current.forEach (index =>{
+        squares[currentPosition + index].classList.add('block')
+    })
+
+}
+
+//undraw the Tetromino
+function undraw() {
+    current.forEach(index => {
+      squares[currentPosition + index].classList.remove('block')
+    })
+}
+
+//move down function
+function moveDown() {
+    undraw()
+    currentPosition= currentPosition += width
+    draw()
+    freeze()
+}
+
+//move the tetromino right, unless is at the edge or there is a blockage
+function moveRight() {
+    undraw()
+    const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1)
+    if(!isAtRightEdge) currentPosition += 1
+    if(current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
+      currentPosition -=1
+    }
+    draw()
+}
+
+
 
